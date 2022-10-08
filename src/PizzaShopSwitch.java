@@ -1,9 +1,8 @@
 
-
 public class PizzaShopSwitch {
 
 	public static void main(String[] args) {
-		
+
 		int bill = 0;
 		String pizzaSize = "Medium";
 		boolean addPepperoni = true;

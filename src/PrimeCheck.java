@@ -4,7 +4,7 @@ public class PrimeCheck {
 
 	public static void main(String[] args) {
 		// Check if the number is prime or not
-		int num = 68;
+		int num = 69;
 		int factors = 0;
 		if (num <= 1) {
 			System.out.println("Number is neither a prime number nor a composite number");
