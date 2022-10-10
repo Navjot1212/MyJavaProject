@@ -8,8 +8,12 @@ public class ChocolateBox {
 		int boxQuantity = 27;
 		while (boxQuantity <= 63) {
 			System.out.println("5 chocolates added into box and total is " + boxQuantity);
+			if (boxQuantity >= 62) {
+				System.out.println("No more chocolates can be added to the box ");
+				break;
+			}
 			boxQuantity += 5;
 		}
-	}
 
+	}
 }

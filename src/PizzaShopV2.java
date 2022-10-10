@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PizzaShopProgram {
+public class PizzaShopV2 {
 
 	public static void main(String[] args) {
 		int bill = 0;
@@ -57,6 +57,9 @@ public class PizzaShopProgram {
 			} else {
 				System.out.println("You current bill for " + i + " pizzas is $" + bill + "\n\n");
 			}
+			System.out.println("Please enter tip amount");
+			int tip = myScanner.nextInt();
+			bill += tip;
 		}
 		System.out.println("You final bill is $" + bill);
 	}

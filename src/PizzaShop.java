@@ -1,65 +1,44 @@
 
-
 public class PizzaShop {
 
 	public static void main(String[] args) {
-		/*
-		 * Assume an order and work out the final bill.
-		 * 
-		 * Take the Cheese Pizza prices as: Small Pizza: $15, Medium Pizza: $20, Large
-		 * Pizza: $25
-		 * 
-		 * For additional pepperoni topping: Pepperoni for Small Pizza: +$2, Pepperoni
-		 * for Medium or Large Pizza: +$3
-		 * 
-		 * Extra cheese for any size pizza: + $1
-		 * 
-		 * For eg: If the Pizza is medium, pepperoni with extra cheese the program
-		 * should calculate the final bill as 20+3+1 = $24 and print as
-		 * 
-		 * “Your final bill is $24”
-		 */
-		boolean smallPizza = false;
-		boolean addPepperoniSmallPizza = false;
-		boolean extraCheeseSmallPizza = false;
 
-		boolean mediumPizza = true;
-		boolean addPepperoniMediumpizza = true;
-		boolean extraCheeseMediumPizza = true;
-
-		boolean largePizza = false;
-		boolean addPepperoniLargepizza = false;
-		boolean extraCheeseLargePizza = false;
 		int bill = 0;
-		if (smallPizza == true) {
+		String pizzaSize = "Medium";
+		boolean addPepperoni = true;
+		boolean addExtraCheese = true;
+		switch (pizzaSize) {
+		case "Small":
 			bill += 15;
-			if (addPepperoniSmallPizza == true) {
+			if (addPepperoni == true) {
 				bill += 2;
 			}
-			if (extraCheeseSmallPizza == true) {
+			if (addExtraCheese == true) {
 				bill += 1;
 			}
-		}
-
-		if (mediumPizza == true) {
+			break;
+		case "Medium":
 			bill += 20;
-			if (addPepperoniMediumpizza == true) {
+			if (addPepperoni == true) {
 				bill += 3;
 			}
-			if (extraCheeseMediumPizza == true) {
+			if (addExtraCheese == true) {
 				bill += 1;
 			}
-
-		}
-		if (largePizza == true) {
+			break;
+		case "Large":
 			bill += 25;
-			if (addPepperoniLargepizza == true) {
+			if (addPepperoni == true) {
 				bill += 3;
 			}
-			if (extraCheeseLargePizza == true) {
+			if (addExtraCheese == true) {
 				bill += 1;
 			}
+			break;
 
+		default:
+			System.out.println("Only Small, Medium and Large pizza sizes are avaliable");
+			break;
 		}
 		System.out.println("You final bill is $" + bill);
 	}
