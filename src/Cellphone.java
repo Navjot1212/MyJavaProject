@@ -2,7 +2,7 @@
 public class Cellphone {
 	int planBill = 0;
 	int phoneBill = 0;
-	int storage = 0;
+	String storage = "";
 	String colour = "";
 
 	void Brand(String bName) {
@@ -11,28 +11,34 @@ public class Cellphone {
 		} else if (bName.equalsIgnoreCase("Samsung")) {
 			System.out.println("Models available\nS22\nS22+\nS22 Ultra\nS22 FE\n");
 		} else {
-			System.out.println("Invalid entry please try again");
+			System.out.println(bName + " products are not available");
 		}
 	}
 
-	int SetStorage(int mem) {
-		this.storage = mem;
-		if (mem == 128) {
+	int SetStorage(String mem) {
+		if (mem.equalsIgnoreCase("128GB")) {
+			this.storage = mem;
 			System.out.println("No extra charges");
-		} else if (mem == 256) {
+		} else if (mem.equalsIgnoreCase("256GB")) {
+			this.storage = mem;
 			System.out.println("$5 extra charges");
 			phoneBill += 5;
-		} else if (mem == 512) {
+		} else if (mem.equalsIgnoreCase("512GB")) {
+			this.storage = mem;
 			System.out.println("$10 extra charges");
 			phoneBill += 10;
 		} else {
-			System.out.println("Invalid selection");
+			System.out.println(mem + " GB variant is not available");
 		}
 		return phoneBill;
 	}
 
 	void SetColour(String color) {
-		this.colour = color;
+		if (color.equalsIgnoreCase("Black") || color.equalsIgnoreCase("White") || color.equalsIgnoreCase("Silver")) {
+			this.colour = color;
+		} else {
+			System.out.println(color + " colour is not available ");
+		}
 	}
 
 	int Model(String model) {
@@ -70,7 +76,7 @@ public class Cellphone {
 			phoneBill += 25;
 			break;
 		default:
-			System.out.println("Invalid entry please try again\n");
+			System.out.println(model + " model is not available\n");
 			break;
 		}
 		return phoneBill;
@@ -78,7 +84,7 @@ public class Cellphone {
 
 	void Specs() {
 		System.out.println("\nSpecs\nColour " + colour + "\nRAM 8GB\nStorage " + storage
-				+ " GB\nCellular 5G\nCamera 50 MP\nBattery 3700 mAh\n");
+				+ "\nCellular 5G\nCamera 50 MP\nBattery 3700 mAh\n");
 	}
 
 	int Plan(String serviceProvider) {
@@ -96,7 +102,7 @@ public class Cellphone {
 			planBill += 75;
 			break;
 		default:
-			System.out.println("Invalid entry please try again\n");
+			System.out.println(serviceProvider + " service provider is not available\n");
 			break;
 		}
 		return planBill;
