@@ -1,6 +1,7 @@
 
 public class CRSMethod {
 	int score = 0;
+	int terminator = 0;
 
 	int educationLevel(String level) {
 		if (level.equalsIgnoreCase("a")) {
@@ -12,7 +13,8 @@ public class CRSMethod {
 		} else if (level.equalsIgnoreCase("d")) {
 			score += 21;
 		} else {
-			System.out.println("No points added");
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -24,7 +26,8 @@ public class CRSMethod {
 		} else if (exp >= 6) {
 			score += 15;
 		} else {
-			System.out.println("No points added");
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -39,7 +42,8 @@ public class CRSMethod {
 				score--;
 			}
 		} else {
-			System.out.println("No points added");
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -50,21 +54,33 @@ public class CRSMethod {
 			score += 5;
 		} else if (l >= 8 && l <= 9) {
 			score += 6;
+		}else {
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		if (s == 7.5) {
 			score += 5;
 		} else if (s >= 8 && s <= 9) {
 			score += 6;
+		}else {
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		if (r == 7.5) {
 			score += 5;
 		} else if (r >= 8 && r <= 9) {
 			score += 6;
+		}else {
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		if (w == 7.5) {
 			score += 5;
 		} else if (w >= 8 && w <= 9) {
 			score += 6;
+		}else {
+			System.out.println("No points added/Invalid entry");
+			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -73,12 +89,18 @@ public class CRSMethod {
 	int adaptability(String relative, String study, String work) {
 		if (relative.equalsIgnoreCase("y")) {
 			score += 5;
+		}else {
+			System.out.println("No points added");
 		}
 		if (study.equalsIgnoreCase("y")) {
 			score += 5;
+		}else {
+			System.out.println("No points added");
 		}
 		if (work.equalsIgnoreCase("y")) {
 			score += 10;
+		}else {
+			System.out.println("No points added");
 		}
 		System.out.println("Current score : " + score);
 		return score;

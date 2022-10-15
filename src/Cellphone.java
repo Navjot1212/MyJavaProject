@@ -1,9 +1,9 @@
-
 public class Cellphone {
 	int planBill = 0;
 	int phoneBill = 0;
 	String storage = "";
 	String colour = "";
+	int terminator = 0;
 
 	void Brand(String bName) {
 		if (bName.equalsIgnoreCase("Apple")) {
@@ -11,33 +11,8 @@ public class Cellphone {
 		} else if (bName.equalsIgnoreCase("Samsung")) {
 			System.out.println("Models available\nS22\nS22+\nS22 Ultra\nS22 FE\n");
 		} else {
-			System.out.println(bName + " products are not available");
-		}
-	}
-
-	int SetStorage(String mem) {
-		if (mem.equalsIgnoreCase("128GB")) {
-			this.storage = mem;
-			System.out.println("No extra charges");
-		} else if (mem.equalsIgnoreCase("256GB")) {
-			this.storage = mem;
-			System.out.println("$5 extra charges");
-			phoneBill += 5;
-		} else if (mem.equalsIgnoreCase("512GB")) {
-			this.storage = mem;
-			System.out.println("$10 extra charges");
-			phoneBill += 10;
-		} else {
-			System.out.println(mem + " GB variant is not available");
-		}
-		return phoneBill;
-	}
-
-	void SetColour(String color) {
-		if (color.equalsIgnoreCase("Black") || color.equalsIgnoreCase("White") || color.equalsIgnoreCase("Silver")) {
-			this.colour = color;
-		} else {
-			System.out.println(color + " colour is not available ");
+			System.out.println(bName + " products are not available\n");
+			System.exit(terminator);
 		}
 	}
 
@@ -77,14 +52,48 @@ public class Cellphone {
 			break;
 		default:
 			System.out.println(model + " model is not available\n");
+			System.exit(terminator);
 			break;
 		}
 		return phoneBill;
 	}
 
-	void Specs() {
-		System.out.println("\nSpecs\nColour " + colour + "\nRAM 8GB\nStorage " + storage
-				+ "\nCellular 5G\nCamera 50 MP\nBattery 3700 mAh\n");
+	int SetStorage(String mem) {
+		if (mem.equalsIgnoreCase("128GB")) {
+			this.storage = mem;
+			System.out.println("No extra charges");
+		} else if (mem.equalsIgnoreCase("256GB")) {
+			this.storage = mem;
+			System.out.println("$5 extra charges");
+			phoneBill += 5;
+		} else if (mem.equalsIgnoreCase("512GB")) {
+			this.storage = mem;
+			System.out.println("$10 extra charges");
+			phoneBill += 10;
+		} else {
+			System.out.println(mem + " GB variant is not available");
+			System.exit(terminator);
+		}
+		return phoneBill;
+	}
+
+	void SetColour(String color) {
+		if (color.equalsIgnoreCase("Black") || color.equalsIgnoreCase("White") || color.equalsIgnoreCase("Silver")) {
+			this.colour = color;
+		} else {
+			System.out.println(color + " colour is not available ");
+			System.exit(terminator);
+		}
+	}
+
+	void Specs(String brand) {
+		if (brand.equalsIgnoreCase("Apple")) {
+			System.out.println("\nSpecs\nColour " + colour + "\nRAM 8GB\nStorage " + storage
+					+ "\nCellular 5G\nCamera 55 MP\nBattery 4000 mAh\n");
+		} else {
+			System.out.println("\nSpecs\nColour " + colour + "\nRAM 6GB\nStorage " + storage
+					+ "\nCellular 5G\nCamera 50 MP\nBattery 3700 mAh\n");
+		}
 	}
 
 	int Plan(String serviceProvider) {
@@ -103,6 +112,7 @@ public class Cellphone {
 			break;
 		default:
 			System.out.println(serviceProvider + " service provider is not available\n");
+			System.exit(terminator);
 			break;
 		}
 		return planBill;

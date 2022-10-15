@@ -13,12 +13,12 @@ public class CellphoneShop {
 			String model = sc.nextLine();
 			int phBill = myPh.Model(model.replaceAll(" ", ""));
 			System.out.println("Please select the colour\nBlack\nWhite\nSilver");
-			String colour = sc.nextLine();	
+			String colour = sc.nextLine();
 			myPh.SetColour(colour.replaceAll(" ", ""));
 			System.out.println("Please select the storage\n128 GB\n256 GB\n512 GB");
 			String storage = sc.nextLine();
 			phBill = myPh.SetStorage(storage.replaceAll(" ", ""));
-			myPh.Specs();
+			myPh.Specs(brand);
 			System.out.println("Please select the service provider\nRogers\nTelus\nBell ");
 			String plan = sc.nextLine();
 			int planBill = myPh.Plan(plan.replaceAll(" ", ""));
