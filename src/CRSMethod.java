@@ -1,7 +1,6 @@
 
 public class CRSMethod {
 	int score = 0;
-	int terminator = 0;
 
 	int educationLevel(String level) {
 		if (level.equalsIgnoreCase("a")) {
@@ -14,7 +13,6 @@ public class CRSMethod {
 			score += 21;
 		} else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -27,7 +25,6 @@ public class CRSMethod {
 			score += 15;
 		} else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -43,7 +40,6 @@ public class CRSMethod {
 			}
 		} else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
@@ -56,7 +52,6 @@ public class CRSMethod {
 			score += 6;
 		}else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
 		}
 		if (s == 7.5) {
 			score += 5;
@@ -64,7 +59,7 @@ public class CRSMethod {
 			score += 6;
 		}else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
+			
 		}
 		if (r == 7.5) {
 			score += 5;
@@ -72,7 +67,7 @@ public class CRSMethod {
 			score += 6;
 		}else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
+		
 		}
 		if (w == 7.5) {
 			score += 5;
@@ -80,7 +75,6 @@ public class CRSMethod {
 			score += 6;
 		}else {
 			System.out.println("No points added/Invalid entry");
-			System.exit(terminator);
 		}
 		System.out.println("Current score : " + score);
 		return score;
