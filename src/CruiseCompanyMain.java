@@ -12,24 +12,49 @@ public class CruiseCompanyMain {
 			CruiseCompanyMethod[] fleet = { scenicCruise, sunsetCruise, discoveryCruise, mysteryCruise };
 			String confirmation;
 			String cruiseName;
+			boolean attempt;
+			int attemptCount = 3;
 			int num = 0;
+			System.out.println("Welcome to Cruise Booking.");
+			System.out.println("Enter your email address.");
+			String email = sc.nextLine();
+			System.out.println("Enter your full name");
+			String name = sc.nextLine();
+			System.out.println("Enter your phone number");
+			String phNum = sc.nextLine();
+			System.out.println("Enter new password");
+			String password = sc.nextLine();
+			User user = new User(email, name, phNum, password);
+			do {
+				System.out.println("Enter your UserName.");
+				String userName = sc.nextLine();
+				System.out.println("Enter your password");
+				password = sc.nextLine();
+				attempt = user.logIn(userName, password);
+				if (!attempt) {
+					System.out.println("Attempts left " + (attemptCount - 1));
+				}
+				attemptCount--;
+				if ((attemptCount == 0)&&!attempt) {
+					System.out.println("Max attempts reached");
+					System.exit(0);
+				}
+			} while (!attempt && !(attemptCount == 0));
 			do {
 				System.out.println(
 						"We offer 4 different packages as displayed below. Please enter the cruise that you want to select \nScenic Cruise\nSunset Cruise\nDiscovery Cruise\nMystery Cruise ");
 				cruiseName = sc.nextLine();
-				if (cruiseName.equalsIgnoreCase("Scenic Cruise")||cruiseName.equalsIgnoreCase("Sunset Cruise")||cruiseName.equalsIgnoreCase("Discovery Cruise")||cruiseName.equalsIgnoreCase("Mystery Cruise")) {
-				for (int i = 0; i < fleet.length; i++) {
-					if (fleet[i].CruiseName.equalsIgnoreCase(cruiseName)) {
-						System.out.println("The cruise that you have selected is " + fleet[i].CruiseName
-								+ " which is a " + fleet[i].numOfDays + " day cruise ");
-						System.out.println("Price for Adults above 12 years old age : $" + fleet[i].adultsCruisePrice
-								+ " per day\nPrice for kids above 5 years old age: $" + fleet[i].childrenCruisePrice
-								+ " per day \nChildren of age 5 and below can cruise free!!\n");
-						num = i;
-						break;
+				if (cruiseName.equalsIgnoreCase("Scenic Cruise") || cruiseName.equalsIgnoreCase("Sunset Cruise")
+						|| cruiseName.equalsIgnoreCase("Discovery Cruise")
+						|| cruiseName.equalsIgnoreCase("Mystery Cruise")) {
+					for (int i = 0; i < fleet.length; i++) {
+						if (fleet[i].getCruiseName().equalsIgnoreCase(cruiseName)) {
+							fleet[i].getCruiseDetails();
+							num = i;
+							break;
+						}
 					}
-				}
-				}else {
+				} else {
 					System.out.println("Invalid selection");
 					System.exit(0);
 				}
@@ -41,44 +66,85 @@ public class CruiseCompanyMain {
 			int numOfAdults = sc.nextInt();
 			System.out.println("Enter the number of children :");
 			int numOfChildren = sc.nextInt();
-			int counter = numOfChildren;
-			while (counter > 0) {
-				System.out.println("Enter the age of child :");
+			for (int i = 0; i < numOfChildren; i++) {
+				System.out.println("Enter the age of child " + (i + 1) + ":");
 				int childAge = sc.nextInt();
 				if (childAge <= 5) {
 					numOfChildren--;
-				}else if(childAge > 12) {
+				} else if (childAge > 12) {
+					System.out.println("Entered child age " + childAge
+							+ " is more than 12 years so it will be considered as an adult");
 					numOfAdults++;
+					System.out.println("Updated number of adults is :" + numOfAdults);
 					numOfChildren--;
 				}
-				counter--;
 			}
 			System.out.println(
 					"\nAll our cruises have food service on board.\nDo you want to pre-book for dinner buffet meals at 20.99 per day for adults\nAnd 4.99 per day for kids?");
-			String buffet = sc.next();
+			String buffet = sc.nextLine();
 			boolean isBuffetBooked = false;
 			if (buffet.equalsIgnoreCase("Yes") || buffet.equalsIgnoreCase("Y")) {
 				isBuffetBooked = true;
 			}
 			System.out.println("\nYour Package includes: ");
-			double adltCruiseBill = fleet[num].getAdultCruiseBill(numOfAdults);
-			System.out.printf(fleet[num].CruiseName + " Adults 		 	@	%d	: $ %.2f \n", numOfAdults,
-					adltCruiseBill);
-			double chldrnCruiseBill = fleet[num].getChildrenCruiseBill(numOfChildren);
-			System.out.printf(fleet[num].CruiseName + " Children above 5  	@	%d	: $ %.2f \n", numOfChildren,
-					chldrnCruiseBill);
-			double adltBftBill = fleet[num].getAdultBuffetBill(numOfAdults, isBuffetBooked);
-			System.out.printf("Buffet Special Price Adults		@	%d	: $ %.2f \n", numOfAdults, adltBftBill);
-			double chldBftBill = fleet[num].getChildrenBuffetBill(numOfChildren, isBuffetBooked);
-			System.out.printf("Buffet Special Price Children above 5  @ 	%d	: $ %.2f \n", numOfChildren,
-					chldBftBill);
-			double bill = adltCruiseBill + chldrnCruiseBill + adltBftBill + chldBftBill;
-			System.out.printf("Total Price						: $ %.2f \n", bill);
-			double hst = bill * 0.15;
-			System.out.printf("HST	@ 15%%			                	: $ %.2f \n", hst);
-			double finalBill = bill + hst;
-			System.out.printf("Final Price						: $ %.2f \n", finalBill);
-		}catch (InputMismatchException ex) {
+			fleet[num].getAdultCruiseBill(numOfAdults);
+			fleet[num].getChildrenCruiseBill(numOfChildren);
+			fleet[num].getAdultBuffetBill(numOfAdults, isBuffetBooked);
+			fleet[num].getChildrenBuffetBill(numOfChildren, isBuffetBooked);
+			fleet[num].getBill();
+			System.out.println(
+					"Do you want to update your personal information. Press Y to change. Press any other alphabet to exit. ");
+			String acInfoUpdate = sc.nextLine();
+			if (acInfoUpdate.equalsIgnoreCase("Y")) {
+				System.out.println(
+						"Please enter the information you want to change. \n1. Password\n2. Phone number\n3. Email ");
+				int selection = sc.nextInt();
+				attemptCount = 3;
+				if (selection == 1) {
+					do {
+						attempt = user.updatePassword();
+						if (!attempt) {
+							System.out.println("Attempts left " + (attemptCount - 1));
+						}
+						attemptCount--;
+						if ((attemptCount == 0)&&!attempt) {
+							System.out.println("Max attempts reached");
+							System.exit(0);
+						}
+					} while (!attempt && !(attemptCount == 0));
+				} else if (selection == 2) {
+					do {
+						attempt = user.updatePhoneNumber();
+						if (!attempt) {
+							System.out.println("Attempts left " + (attemptCount - 1));
+						}
+						attemptCount--;
+						if ((attemptCount == 0)&&!attempt) {
+							System.out.println("Max attempts reached");
+							System.exit(0);
+						}
+					} while (!attempt && !(attemptCount == 0));
+				} else if (selection == 3) {
+					do {
+						attempt = user.updateEmail();
+						if (!attempt) {
+							System.out.println("Attempts left " + (attemptCount - 1));
+						}
+						attemptCount--;
+						if ((attemptCount == 0)&&!attempt) {
+							System.out.println("Max attempts reached");
+							System.exit(0);
+						}
+					} while (!attempt && !(attemptCount == 0));
+				} else {
+					System.out.println("Invalid selection");
+					System.exit(0);
+				}
+			} else {
+				System.out.println("Thank you for using the service!");
+			}
+
+		} catch (InputMismatchException ex) {
 			System.out.println("Invalid input");
 		}
 	}

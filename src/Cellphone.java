@@ -1,8 +1,8 @@
 public class Cellphone {
 	int planBill = 0;
 	int phoneBill = 0;
-	String storage = "";
-	String colour = "";
+	private String storage = "";
+	private String colour = "";
 
 	void Brand(String bName) {
 		if (bName.equalsIgnoreCase("Apple")) {
@@ -55,14 +55,14 @@ public class Cellphone {
 
 	int SetStorage(String mem) {
 		if (mem.equalsIgnoreCase("128 GB")) {
-			this.storage = mem;
+			storage = mem;
 			System.out.println("No extra charges");
 		} else if (mem.equalsIgnoreCase("256 GB")) {
-			this.storage = mem;
+			storage = mem;
 			System.out.println("$5 extra charges");
 			phoneBill += 5;
 		} else if (mem.equalsIgnoreCase("512 GB")) {
-			this.storage = mem;
+			storage = mem;
 			System.out.println("$10 extra charges");
 			phoneBill += 10;
 		}
@@ -72,7 +72,7 @@ public class Cellphone {
 	void SetColour(String color) {
 		if (color.equalsIgnoreCase("Black") || color.equalsIgnoreCase("White") || color.equalsIgnoreCase("Silver")) {
 			System.out.println(color+" colour selected");
-			this.colour = color;
+			colour = color;
 		} 
 	}
 
