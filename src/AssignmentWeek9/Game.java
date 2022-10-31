@@ -62,6 +62,8 @@ public class Game {
 			}
 
 		} while (!maskedData.equals(data) && wrongGuesses <= 4);
+		wrongGuesses = 0;
+		wrongLetters = "";
 		if (maskedData.equals(data)) {
 			System.out.println("Congratulations you won!\nYou successfully guessed " + maskedData);
 		} else {
