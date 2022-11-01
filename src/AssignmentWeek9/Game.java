@@ -1,18 +1,22 @@
 package AssignmentWeek9;
 
+//Importing java library classes
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Game {
+	// Declaring private variables
 	private String guess;
 	private String wrongLetters = "";
 	private int wrongGuesses;
-	private String data;
-	private String maskedData;
+	private String name;
+	private String maskedName;
+	private int score;
 	Scanner sc = new Scanner(System.in);
 
 	void greeting() {
+		// Greeting method to greet player according to real time
 		SimpleDateFormat simpleformat = new SimpleDateFormat("k");
 		String strHour = simpleformat.format(new Date());
 		int hour = Integer.parseInt(strHour);
@@ -28,46 +32,62 @@ public class Game {
 	}
 
 	void setup() throws FileNotFoundException {
-		File myFile = new File("C:\\Users\\navjo\\eclipse-workspace\\HelloWorld.txt");
+		// Instantiating File class to import file
+		File myFile = new File("C:\\Users\\navjo\\eclipse-workspace\\NameList.txt");
+		// Instantiating Scanner class to read from file
 		Scanner read = new Scanner(myFile);
+		// Instantiating HashMap class
 		HashMap<Integer, String> map = new HashMap<Integer, String>();
 		int counter = 0;
+		// Allocating File names with integer values(pairing values with keys)
 		while (read.hasNextLine()) {
 			map.put(counter, read.nextLine());
 			counter++;
 		}
 		read.close();
+		// Creating random number from 0 to file size
 		int random = (int) Math.floor(Math.random() * (map.size()));
-		data = map.get(random);
-		maskedData = data;
-		for (int i = 0; i < maskedData.length(); i++) {
-			maskedData = maskedData.replace(maskedData.charAt(i), '_');
+		// Getting random name from file
+		name = map.get(random);
+		// Masking that random name
+		maskedName = name;
+		for (int i = 0; i < maskedName.length(); i++) {
+			maskedName = maskedName.replace(maskedName.charAt(i), '_');
 		}
 	}
 
 	void play() {
 		do {
-			System.out.println("You are Guessing " + maskedData);
+			// Displaying player random name to guess
+			System.out.println("You are Guessing " + maskedName);
 			guess = sc.next();
+			// storing guess in char array
 			char[] guessArray = guess.toCharArray();
-			for (int i = 0; i < data.length(); i++) {
-				if (data.charAt(i) == guessArray[0]) {
-					maskedData = maskedData.substring(0, i) + guessArray[0] + maskedData.substring(i + 1);
+			// UnMasking guessed letter
+			for (int i = 0; i < name.length(); i++) {
+				if (name.charAt(i) == guessArray[0]) {
+					maskedName = maskedName.substring(0, i) + guessArray[0] + maskedName.substring(i + 1);
 				}
 			}
-			if (!data.contains(guess)) {
+			// Displaying wrong guesses
+			if (!name.contains(guess)) {
 				wrongLetters += guess + " ";
 				wrongGuesses++;
 				System.out.println("You have guessed (" + wrongGuesses + ") wrong letters: " + wrongLetters);
 			}
-
-		} while (!maskedData.equals(data) && wrongGuesses <= 4);
+			// Repeating game until player wins or loses
+		} while (!maskedName.equals(name) && wrongGuesses <= 4);
+		// Resetting number of wrong guesses and wrong letters
 		wrongGuesses = 0;
 		wrongLetters = "";
-		if (maskedData.equals(data)) {
-			System.out.println("Congratulations you won!\nYou successfully guessed " + maskedData);
+		// Displaying result and Score
+		if (maskedName.equals(name)) {
+			System.out.println("Congratulations you won!\nYou successfully guessed " + maskedName);
+			score += 10;
+			System.out.println("Your Score : " + score);
+
 		} else {
-			System.out.println("Ooops !\nYou failed to guess \"" + data + "\"");
+			System.out.println("Ooops !\nYou failed to guess \"" + name + "\"");
 		}
 	}
 
