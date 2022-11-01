@@ -20,11 +20,11 @@ public class Game {
 		SimpleDateFormat simpleformat = new SimpleDateFormat("k");
 		String strHour = simpleformat.format(new Date());
 		int hour = Integer.parseInt(strHour);
-		if (hour > 6 && hour < 12) {
+		if (hour >= 6 && hour < 12) {
 			System.out.println("****************\n**Good Morning**\n****************");
-		} else if (hour > 12 && hour < 17) {
+		} else if (hour >= 12 && hour < 17) {
 			System.out.println("******************\n**Good Afternoon**\n******************");
-		} else if (hour > 17 && hour < 21) {
+		} else if (hour >= 17 && hour <= 21) {
 			System.out.println("****************\n**Good Evening**\n****************");
 		} else {
 			System.out.println("**************\n**Good Night**\n**************");
@@ -59,8 +59,14 @@ public class Game {
 	void play() {
 		do {
 			// Displaying player random name to guess
-			System.out.println("You are Guessing " + maskedName);
-			guess = sc.next();
+			System.out.println("You are Guessing " + maskedName+" 🚹 "+maskedName.length()+" letters name");
+			do {
+				System.out.println("👇 Guess a letter");
+				guess = sc.next();
+				if (guess.length() > 1) {
+					System.out.println("Please enter one character at a time☝");
+				}
+			} while (guess.length() > 1);
 			// storing guess in char array
 			char[] guessArray = guess.toCharArray();
 			// UnMasking guessed letter
@@ -74,6 +80,28 @@ public class Game {
 				wrongLetters += guess + " ";
 				wrongGuesses++;
 				System.out.println("You have guessed (" + wrongGuesses + ") wrong letters: " + wrongLetters);
+				switch (wrongGuesses) {
+				case 1: {
+					System.out.println("Hey its ok! Only one wrong guess. You can do it!😁");
+				}
+					break;
+				case 2: {
+					System.out.println("You might be in trouble buddy! Its two wrong guesses already 😞 ");
+				}
+					break;
+				case 3: {
+					System.out.println("Do you even know spellings of your own name ?🧐");
+				}
+					break;
+				case 4: {
+					System.out.println("Just give up already mate. Its not for you!🤬");
+				}
+					break;
+				default: {
+					System.out.println("I doubted you from the start 🤣");
+				}
+					break;
+				}
 			}
 			// Repeating game until player wins or loses
 		} while (!maskedName.equals(name) && wrongGuesses <= 4);
@@ -82,12 +110,13 @@ public class Game {
 		wrongLetters = "";
 		// Displaying result and Score
 		if (maskedName.equals(name)) {
-			System.out.println("Congratulations you won!\nYou successfully guessed " + maskedName);
+			System.out.println("\n🎉🎉Congratulations you won!🏆🏆\n👏👏You successfully guessed \"" + maskedName+"\" 👏👏");
 			score += 10;
-			System.out.println("Your Score : " + score);
+			System.out.println("🎖Your Score : " + score);
 
 		} else {
 			System.out.println("Ooops !\nYou failed to guess \"" + name + "\"");
+			System.out.println("🎖Your Score : " + score);
 		}
 	}
 
