@@ -24,10 +24,8 @@ public class Game {
 			System.out.println("****************\n**Good Morning**\n****************");
 		} else if (hour >= 12 && hour < 17) {
 			System.out.println("******************\n**Good Afternoon**\n******************");
-		} else if (hour >= 17 && hour <= 21) {
-			System.out.println("****************\n**Good Evening**\n****************");
 		} else {
-			System.out.println("**************\n**Good Night**\n**************");
+			System.out.println("****************\n**Good Evening**\n****************");
 		}
 	}
 
@@ -51,15 +49,13 @@ public class Game {
 		name = map.get(random);
 		// Masking that random name
 		maskedName = name;
-		for (int i = 0; i < maskedName.length(); i++) {
-			maskedName = maskedName.replace(maskedName.charAt(i), '_');
-		}
+		maskedName = maskedName.replaceAll("\\w", "_");
 	}
 
 	void play() {
 		do {
 			// Displaying player random name to guess
-			System.out.println("You are Guessing " + maskedName+" 🚹 "+maskedName.length()+" letters name");
+			System.out.println("You are Guessing " + maskedName + " 🚹 " + maskedName.length() + " letters name");
 			do {
 				System.out.println("👇 Guess a letter");
 				guess = sc.next();
@@ -67,16 +63,15 @@ public class Game {
 					System.out.println("Please enter one character at a time☝");
 				}
 			} while (guess.length() > 1);
-			// storing guess in char array
-			char[] guessArray = guess.toCharArray();
 			// UnMasking guessed letter
 			for (int i = 0; i < name.length(); i++) {
-				if (name.charAt(i) == guessArray[0]) {
-					maskedName = maskedName.substring(0, i) + guessArray[0] + maskedName.substring(i + 1);
+				String revealedChar = "" + name.charAt(i);
+				if (guess.equalsIgnoreCase(revealedChar)) {
+					maskedName = maskedName.substring(0, i) + revealedChar + maskedName.substring(i + 1);
 				}
 			}
 			// Displaying wrong guesses
-			if (!name.contains(guess)) {
+			if (!name.contains(guess.toLowerCase()) && !(name.contains(guess.toUpperCase()))) {
 				wrongLetters += guess + " ";
 				wrongGuesses++;
 				System.out.println("You have guessed (" + wrongGuesses + ") wrong letters: " + wrongLetters);
@@ -102,6 +97,8 @@ public class Game {
 				}
 					break;
 				}
+			} else {
+				System.out.println("You have guessed (" + wrongGuesses + ") wrong letters: " + wrongLetters);
 			}
 			// Repeating game until player wins or loses
 		} while (!maskedName.equals(name) && wrongGuesses <= 4);
@@ -110,7 +107,8 @@ public class Game {
 		wrongLetters = "";
 		// Displaying result and Score
 		if (maskedName.equals(name)) {
-			System.out.println("\n🎉🎉Congratulations you won!🏆🏆\n👏👏You successfully guessed \"" + maskedName+"\" 👏👏");
+			System.out.println(
+					"\n🎉🎉Congratulations you won!🏆🏆\n👏👏You successfully guessed \"" + maskedName + "\" 👏👏");
 			score += 10;
 			System.out.println("🎖Your Score : " + score);
 
