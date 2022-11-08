@@ -89,7 +89,7 @@ public class Game {
 				}
 					break;
 				case 4: {
-					System.out.println("Just give up already mate. Its not for you!🤬");
+					System.out.println("Just give up already buddy. Its not for you!🤬");
 				}
 					break;
 				default: {
@@ -113,9 +113,8 @@ public class Game {
 			System.out.println("🎖Your Score : " + score);
 
 		} else {
-			System.out.println("Ooops !\nYou failed to guess \"" + name + "\"");
+			System.out.println("Ooops ❗\nYou failed to guess \"" + name + "\" 👎");
 			System.out.println("🎖Your Score : " + score);
 		}
 	}
-
 }
