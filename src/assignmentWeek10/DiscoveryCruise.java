@@ -1,12 +1,12 @@
 package assignmentWeek10;
 
-public class DiscoveryCruise extends Cruise{
-	final String CruiseName = "Scenic Cruise";
-    final double adultsCruisePrice = 45.99;
-	final double childrenCruisePrice = 12.99;
-	final int numOfDays = 2;
-	final double adventureGamesPrice = 45;
-	
+public class DiscoveryCruise extends Cruise {
+	private String CruiseName = "Scenic Cruise";
+	private double adultsCruisePrice = 45.99;
+	private double childrenCruisePrice = 12.99;
+	private int numOfDays = 2;
+	private double adventureGamesPrice = 45;
+
 	void getCruiseDetails() {
 		System.out.println(
 				"The cruise that you have selected is " + CruiseName + " which is a " + numOfDays + " day cruise ");
@@ -14,6 +14,7 @@ public class DiscoveryCruise extends Cruise{
 				+ " per day\nPrice for kids above 5 years old age: $" + childrenCruisePrice
 				+ " per day \nChildren of age 5 and below can cruise free!!\n");
 	}
+
 	double getAdultPrice() {
 		return adultsCruisePrice;
 	}
@@ -25,14 +26,12 @@ public class DiscoveryCruise extends Cruise{
 	int getNumOfDays() {
 		return numOfDays;
 	}
-	double addOns() {
-		System.out.println(
-				CruiseName + " offers casino services for $" + adventureGamesPrice + " per person\nDo you want to add casino services?");
-		String wantadventureGames = sc.nextLine();
-		if (wantadventureGames.equalsIgnoreCase("Yes")) {
-			return adventureGamesPrice;
-		} else {
-			return 0;
-		}
+
+	String getSpecialFeature() {
+		return "Adventure Games";
+	}
+
+	double getAddOnPrice() {
+		return adventureGamesPrice;
 	}
 }

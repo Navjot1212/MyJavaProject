@@ -1,16 +1,16 @@
 package assignmentWeek10;
 
 public class Cruise extends User {
-	String cruiseName;
-	String wantBuffet;
-	double adultCruisePrice;
-	double childrenCruisePrice;
-	double addOnPrice;
-	double adultBuffetBill;
-	double childrenBuffetBill;
-	int numOfDays;
-	int numOfAdults;
-	int numOfChildren;
+	private String cruiseName;
+	private String specialFeature;
+	private double adultCruisePrice;
+	private double childrenCruisePrice;
+	private double adultBuffetBill;
+	private double childrenBuffetBill;
+	private int numOfDays;
+	private int numOfAdults;
+	private int numOfChildren;
+	private double addOnPrice;
 
 	void selectCruise() {
 		String cruiseName;
@@ -26,49 +26,64 @@ public class Cruise extends User {
 				adultCruisePrice = scenicCruise.getAdultPrice();
 				childrenCruisePrice = scenicCruise.getChildrenPrice();
 				numOfDays = scenicCruise.getNumOfDays();
-				addOnPrice = scenicCruise.addOns();
+				addOnPrice = scenicCruise.getAddOnPrice();
+				specialFeature = scenicCruise.getSpecialFeature();
 			} else if (cruiseName.equalsIgnoreCase("Sunset Cruise")) {
 				SunsetCruise sunsetCruise = new SunsetCruise();
 				sunsetCruise.getCruiseDetails();
 				adultCruisePrice = sunsetCruise.getAdultPrice();
 				childrenCruisePrice = sunsetCruise.getChildrenPrice();
 				numOfDays = sunsetCruise.getNumOfDays();
-				addOnPrice = sunsetCruise.addOns();
+				addOnPrice = sunsetCruise.getAddOnPrice();
+				specialFeature = sunsetCruise.getSpecialFeature();
 			} else if (cruiseName.equalsIgnoreCase("Mystery Cruise")) {
 				MysteryCruise mysteryCruise = new MysteryCruise();
 				mysteryCruise.getCruiseDetails();
 				adultCruisePrice = mysteryCruise.getAdultPrice();
 				childrenCruisePrice = mysteryCruise.getChildrenPrice();
 				numOfDays = mysteryCruise.getNumOfDays();
-				addOnPrice = mysteryCruise.addOns();
+				addOnPrice = mysteryCruise.getAddOnPrice();
+				specialFeature = mysteryCruise.getSpecialFeature();
 			} else if (cruiseName.equalsIgnoreCase("Dicovery Cruise")) {
 				DiscoveryCruise discoveryCruise = new DiscoveryCruise();
 				discoveryCruise.getCruiseDetails();
 				adultCruisePrice = discoveryCruise.getAdultPrice();
 				childrenCruisePrice = discoveryCruise.getChildrenPrice();
 				numOfDays = discoveryCruise.getNumOfDays();
-				addOnPrice = discoveryCruise.addOns();
+				addOnPrice = discoveryCruise.getAddOnPrice();
+				specialFeature = discoveryCruise.getSpecialFeature();
 			} else {
 				System.out.println("Invalid Selection!");
 			}
 		} while (!(cruiseName.equalsIgnoreCase("Scenic Cruise") || cruiseName.equalsIgnoreCase("Sunset Cruise")
 				|| cruiseName.equalsIgnoreCase("Discovery Cruise") || cruiseName.equalsIgnoreCase("Mystery Cruise")));
 	}
-	
+
 	void boarding() {
 		System.out.println("Enter number of Adults :");
 		numOfAdults = sc.nextInt();
 		System.out.println("Enter number of Children :");
 		numOfChildren = sc.nextInt();
 	}
+
 	void wantBuffet() {
 		System.out.println(
-				"All rooms come with free breakfast. Do you want to add lunch in your room as well at a discounted pre-booking rate of $25/ adult and $5/ child ?");
-		wantBuffet = sc.nextLine();
+				"\nAll our cruises have food service on board.\nDo you want to pre-book for dinner buffet meals at 20.99 per day for adults\nAnd 4.99 per day for kids Yes/No?");
+		String wantBuffet = sc.next();
 		if (wantBuffet.equalsIgnoreCase("Yes")) {
 			adultBuffetBill = (numOfAdults * 20.99 * numOfDays);
 			childrenBuffetBill = (numOfChildren * 4.99 * numOfDays);
-		}	
+		}
+	}
+
+	void wantaddOns() {
+		System.out
+				.println("\nDo you want to pre-book for " + specialFeature + " at " + addOnPrice + " per day/per day Yes/No?");
+		String wantAddOns = sc.next();
+		if (wantAddOns.equalsIgnoreCase("Yes")) {
+			addOnPrice = (numOfAdults * addOnPrice * numOfDays) + (numOfChildren * addOnPrice * numOfDays);
+
+		}
 	}
 
 	void getCruiseBill() {
@@ -82,8 +97,10 @@ public class Cruise extends User {
 		System.out.printf("Buffet Special Price Adults		@	%d	: $ %.2f \n", numOfAdults, adultBuffetBill);
 		System.out.printf("Buffet Special Price Children above 5  @ 	%d	: $ %.2f \n", numOfChildren,
 				childrenBuffetBill);
+		System.out.printf(cruiseName + " AddOns		       	  @ 	 %d	: $ %.2f \n", (numOfAdults + numOfChildren),
+				addOnPrice);
 		System.out.printf("Total Price						: $ %.2f \n", bill);
-		System.out.printf("HST	@ 15%%			                	: $ %.2f \n", hst);
+		System.out.printf("HST	@ 18%%			                	: $ %.2f \n", hst);
 		System.out.printf("Final Price						: $ %.2f \n", finalBill);
 
 	}

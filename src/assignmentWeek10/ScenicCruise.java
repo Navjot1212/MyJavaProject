@@ -1,11 +1,11 @@
 package assignmentWeek10;
 
 public class ScenicCruise extends Cruise {
-	final String CruiseName = "Scenic Cruise";
-	final double adultsCruisePrice = 43.99;
-	final double childrenCruisePrice = 12.99;
-	final int numOfDays = 3;
-	final double spaPrice = 50;
+	private String CruiseName = "Scenic Cruise";
+	private double adultsCruisePrice = 43.99;
+	private double childrenCruisePrice = 12.99;
+	private int numOfDays = 3;
+	private double spaPrice = 50;
 
 	void getCruiseDetails() {
 		System.out.println(
@@ -27,15 +27,12 @@ public class ScenicCruise extends Cruise {
 		return numOfDays;
 	}
 
-	double addOns() {
-		System.out.println(
-				CruiseName + " offers Spa services for $" + spaPrice + " per person\nDo you want to add Spa services?");
-		String wantSpa = sc.nextLine();
-		if (wantSpa.equalsIgnoreCase("Yes")) {
-			return spaPrice;
-		} else {
-			return 0;
-		}
+	String getSpecialFeature() {
+		return "Spa";
+	}
+
+	double getAddOnPrice() {
+		return spaPrice;
 	}
 
 }
