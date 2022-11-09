@@ -55,9 +55,10 @@ public class User {
 
 	}
 
-	void logIn() {
+	boolean logIn() {
 		String username;
 		String pass;
+		boolean validation;
 		do {
 			System.out.println("Please enter your username :");
 			username = sc.nextLine();
@@ -65,10 +66,13 @@ public class User {
 			pass = sc.nextLine();
 			if (username.equals(email) && pass.equals(password)) {
 				System.out.println("login succesfull");
+				validation = true;
 			} else {
 				System.out.println("User name or password incorrect");
+				validation = false;
 			}
 		} while (!(username.equals(email) && pass.equals(password)));
+		return validation;
 	}
 
 	void updatePassword() {
@@ -91,31 +95,32 @@ public class User {
 	void updatePhoneNumber() {
 		String oldPhoneNumber;
 		do {
-		System.out.println("Enter your existing phone number");
-		oldPhoneNumber = sc.nextLine();
-		if (oldPhoneNumber.equals(phoneNumber)) {
-			System.out.println("Enter your new phone number");
-			String newPhoneNumber = sc.nextLine();
-			phoneNumber = newPhoneNumber;
-			System.out.println("Your phone number has been changed!");
-		} else {
-			System.out.println("Wrong phone number!");
-		}
-		}while(!oldPhoneNumber.equals(phoneNumber));
+			System.out.println("Enter your existing phone number");
+			oldPhoneNumber = sc.nextLine();
+			if (oldPhoneNumber.equals(phoneNumber)) {
+				System.out.println("Enter your new phone number");
+				String newPhoneNumber = sc.nextLine();
+				phoneNumber = newPhoneNumber;
+				System.out.println("Your phone number has been changed!");
+			} else {
+				System.out.println("Wrong phone number!");
+			}
+		} while (!oldPhoneNumber.equals(phoneNumber));
 	}
 
 	void updateEmail() {
 		String oldEmail;
-		do{System.out.println("Enter your existing email");
-		oldEmail = sc.nextLine();
-		if (oldEmail.equals(email)) {
-			System.out.println("Enter your new email");
-			String newEmail = sc.nextLine();
-			email = newEmail;
-			System.out.println("Your email has been changed!");
-		} else {
-			System.out.println("Wrong email address!");
-		}
-		}while(!oldEmail.equals(email));
+		do {
+			System.out.println("Enter your existing email");
+			oldEmail = sc.nextLine();
+			if (oldEmail.equals(email)) {
+				System.out.println("Enter your new email");
+				String newEmail = sc.nextLine();
+				email = newEmail;
+				System.out.println("Your email has been changed!");
+			} else {
+				System.out.println("Wrong email address!");
+			}
+		} while (!oldEmail.equals(email));
 	}
 }
