@@ -2,15 +2,15 @@ package assignmentWeek10;
 
 import java.util.Scanner;
 
-public class Main {
+public class VacationBookingMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Cruise cruise = new Cruise();
 		Hotel hotel = new Hotel();
 		User navjot = new User();
-//		navjot.signUp();
-//		navjot.logIn();
+		navjot.signUp();
+		navjot.logIn();
 		String selection;
 		String confirmation;
 		do{
