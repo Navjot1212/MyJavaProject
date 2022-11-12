@@ -12,7 +12,7 @@ public class Cruise extends User {
 	private int numOfChildren;
 	private double addOnPrice;
 
-	void selectCruise() {
+	private void selectCruise() {
 		String cruiseName;
 		do {
 
@@ -59,14 +59,14 @@ public class Cruise extends User {
 				|| cruiseName.equalsIgnoreCase("Discovery Cruise") || cruiseName.equalsIgnoreCase("Mystery Cruise")));
 	}
 
-	void boarding() {
+	private void boarding() {
 		System.out.println("Enter number of Adults :");
 		numOfAdults = sc.nextInt();
 		System.out.println("Enter number of Children :");
 		numOfChildren = sc.nextInt();
 	}
 
-	void wantBuffet() {
+	private void wantBuffet() {
 		System.out.println(
 				"\nAll our cruises have food service on board.\nDo you want to pre-book for dinner buffet meals at 20.99 per day for adults\nAnd 4.99 per day for kids Yes/No?");
 		String wantBuffet = sc.next();
@@ -76,9 +76,9 @@ public class Cruise extends User {
 		}
 	}
 
-	void wantaddOns() {
-		System.out
-				.println("\nDo you want to pre-book for " + specialFeature + " at " + addOnPrice + " per day/per day Yes/No?");
+	private void wantaddOns() {
+		System.out.println(
+				"\nDo you want to pre-book for " + specialFeature + " at " + addOnPrice + " per day/per day Yes/No?");
 		String wantAddOns = sc.next();
 		if (wantAddOns.equalsIgnoreCase("Yes")) {
 			addOnPrice = (numOfAdults * addOnPrice * numOfDays) + (numOfChildren * addOnPrice * numOfDays);
@@ -87,6 +87,10 @@ public class Cruise extends User {
 	}
 
 	void getCruiseBill() {
+		selectCruise();
+		boarding();
+		wantBuffet();
+		wantaddOns();
 		double cruiseAdultBill = numOfAdults * adultCruisePrice * numOfDays;
 		double cruiseChildrenBill = numOfChildren * childrenCruisePrice * numOfDays;
 		double bill = cruiseAdultBill + cruiseChildrenBill + adultBuffetBill + childrenBuffetBill + addOnPrice;

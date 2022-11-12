@@ -10,7 +10,7 @@ public class Hotel extends User {
 	private int numOfAdults;
 	private int numOfChildren;
 
-	void selectHotel() {
+	private void selectHotel() {
 		String hotelName;
 		do {
 
@@ -32,14 +32,14 @@ public class Hotel extends User {
 		} while (!(hotelName.equalsIgnoreCase("Deluxe Suite") || hotelName.equalsIgnoreCase("Family Suite")));
 	}
 
-	void checkIn() {
+	private void checkIn() {
 		System.out.println("Enter number of Adults :");
 		numOfAdults = sc.nextInt();
 		System.out.println("Enter number of Children :");
 		numOfChildren = sc.nextInt();
 	}
 
-	void extraMeal() {
+	private void extraMeal() {
 		System.out.println(
 				"All rooms come with free breakfast.\nDo you want to add lunch in your room as well at a discounted pre-booking\nrate of $25/ adult and $5/ child Yes/No ?");
 		wantExtraMeal = sc.next();
@@ -52,6 +52,9 @@ public class Hotel extends User {
 	}
 
 	void getHotelBill() {
+		selectHotel();
+		checkIn();
+		extraMeal();
 		double suiteBill = suitePrice * stayDays;
 		double bill = suiteBill + childrenLunchBill + adultLunchBill;
 		double hst = bill * 0.18;

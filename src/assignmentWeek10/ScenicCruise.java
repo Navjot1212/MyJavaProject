@@ -34,5 +34,4 @@ public class ScenicCruise extends Cruise {
 	double getAddOnPrice() {
 		return spaPrice;
 	}
-
 }

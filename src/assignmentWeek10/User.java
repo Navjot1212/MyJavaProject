@@ -7,7 +7,15 @@ public class User {
 	private String name;
 	private String phoneNumber;
 	private String password;
+	private int count = 1;
 	Scanner sc = new Scanner(System.in);
+
+	private void maxAttempts(int attemptCount) {
+		if (attemptCount > 3) {
+			System.out.println("Max attempts reached!");
+			System.exit(0);
+		}
+	}
 
 	void signUp() {
 		String email;
@@ -55,10 +63,9 @@ public class User {
 
 	}
 
-	boolean logIn() {
+	void logIn() {
 		String username;
 		String pass;
-		boolean validation;
 		do {
 			System.out.println("Please enter your username :");
 			username = sc.nextLine();
@@ -66,13 +73,12 @@ public class User {
 			pass = sc.nextLine();
 			if (username.equals(email) && pass.equals(password)) {
 				System.out.println("login succesfull");
-				validation = true;
 			} else {
 				System.out.println("User name or password incorrect");
-				validation = false;
+				count++;
 			}
+			maxAttempts(count);
 		} while (!(username.equals(email) && pass.equals(password)));
-		return validation;
 	}
 
 	void updatePassword() {
@@ -87,7 +93,9 @@ public class User {
 				System.out.println("Your password has been changed!");
 			} else {
 				System.out.println("Wrong password!");
+				count++;
 			}
+			maxAttempts(count);
 		} while (!oldPassword.equals(password));
 
 	}
@@ -104,7 +112,9 @@ public class User {
 				System.out.println("Your phone number has been changed!");
 			} else {
 				System.out.println("Wrong phone number!");
+				count++;
 			}
+			maxAttempts(count);
 		} while (!oldPhoneNumber.equals(phoneNumber));
 	}
 
@@ -120,7 +130,9 @@ public class User {
 				System.out.println("Your email has been changed!");
 			} else {
 				System.out.println("Wrong email address!");
+				count++;
 			}
+			maxAttempts(count);
 		} while (!oldEmail.equals(email));
 	}
 }
