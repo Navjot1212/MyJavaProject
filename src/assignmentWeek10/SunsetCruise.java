@@ -1,6 +1,7 @@
 package assignmentWeek10;
 
 public class SunsetCruise extends Cruise {
+
 	private String CruiseName = "Sunset Cruise";
 	private double adultsCruisePrice = 52.99;
 	private double childrenCruisePrice = 15.99;

@@ -9,14 +9,14 @@ public class VacationBookingMain {
 			Hotel hotel = new Hotel();
 			User navjot = new User();
 			System.out.println("Welcome to Vacation booking\nPlease sign up to use the services");
-			navjot.signUp();
-			navjot.logIn();
+//			navjot.signUp();
+//			navjot.logIn();
 			String selection;
 			String confirmation;
 			do {
 				do {
 					System.out.println("Please enter the service you want to book\nHotel\nCruise ");
-					selection = sc.nextLine();
+					selection = sc.next();
 					if (selection.equalsIgnoreCase("Cruise")) {
 						cruise.getCruiseBill();
 					} else if (selection.equalsIgnoreCase("Hotel")) {
@@ -27,8 +27,9 @@ public class VacationBookingMain {
 				} while (!(selection.equalsIgnoreCase("Cruise") || selection.equalsIgnoreCase("Hotel")));
 				System.out.println(
 						"Do you want to book another Hotel Room or Cruise ?\nPress Y for another selection or any other key to exit");
-				confirmation = sc.nextLine();
+				confirmation = sc.next();
 			} while (confirmation.equalsIgnoreCase("Y"));
+//			navjot.updateInformation();
 		} catch (InputMismatchException ex) {
 			System.out.println("Inavlid Input!");
 		}

@@ -10,10 +10,13 @@ public class User {
 	private int count = 1;
 	Scanner sc = new Scanner(System.in);
 
-	private void maxAttempts(int attemptCount) {
-		if (attemptCount > 3) {
+	private void maxAttempts() {
+		if (count <= 3) {
+			count++;
+		if (count > 3) {
 			System.out.println("Max attempts reached!");
 			System.exit(0);
+		}
 		}
 	}
 
@@ -75,13 +78,14 @@ public class User {
 				System.out.println("login succesfull");
 			} else {
 				System.out.println("User name or password incorrect");
-				count++;
+				maxAttempts();
 			}
-			maxAttempts(count);
-		} while (!(username.equals(email) && pass.equals(password)));
+			
+		} while (!(username.equals(email) && pass.equals(password)));	
+		count = 1;
 	}
 
-	void updatePassword() {
+	private void updatePassword() {
 		String oldPassword;
 		do {
 			System.out.println("Enter your existing password");
@@ -93,14 +97,13 @@ public class User {
 				System.out.println("Your password has been changed!");
 			} else {
 				System.out.println("Wrong password!");
-				count++;
+				maxAttempts();
 			}
-			maxAttempts(count);
 		} while (!oldPassword.equals(password));
-
+		count = 1;
 	}
 
-	void updatePhoneNumber() {
+	private void updatePhoneNumber() {
 		String oldPhoneNumber;
 		do {
 			System.out.println("Enter your existing phone number");
@@ -112,13 +115,13 @@ public class User {
 				System.out.println("Your phone number has been changed!");
 			} else {
 				System.out.println("Wrong phone number!");
-				count++;
+				maxAttempts();
 			}
-			maxAttempts(count);
 		} while (!oldPhoneNumber.equals(phoneNumber));
+		count = 1;
 	}
 
-	void updateEmail() {
+	private void updateEmail() {
 		String oldEmail;
 		do {
 			System.out.println("Enter your existing email");
@@ -130,9 +133,32 @@ public class User {
 				System.out.println("Your email has been changed!");
 			} else {
 				System.out.println("Wrong email address!");
-				count++;
+				maxAttempts();
 			}
-			maxAttempts(count);
 		} while (!oldEmail.equals(email));
+		count = 1;
+	}
+
+	void updateInformation() {
+		System.out.println(
+				"Do you want to update your personal information. Press Y to change. Press any other alphabet to exit. ");
+		String acInfoUpdate = sc.nextLine();
+		if (acInfoUpdate.equalsIgnoreCase("Y")) {
+			System.out.println(
+					"Please enter the information you want to change. \n1. Password\n2. Phone number\n3. Email ");
+			int selection = sc.nextInt();
+			if (selection == 1) {
+				updatePassword();
+			} else if (selection == 2) {
+				updatePhoneNumber();
+			} else if (selection == 3) {
+				updateEmail();
+			} else {
+				System.out.println("Invalid Selection!");
+			}
+		} else {
+			System.out.println("Thank you for using our services!");
+			System.exit(0);
+		}
 	}
 }

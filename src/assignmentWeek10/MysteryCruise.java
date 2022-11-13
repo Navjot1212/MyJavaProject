@@ -1,10 +1,11 @@
 package assignmentWeek10;
 
 public class MysteryCruise extends Cruise {
-	private String CruiseName = "Scenic Cruise";
-	private double adultsCruisePrice = 39.99;
-	private double childrenCruisePrice = 9.99;
-	private int numOfDays = 4;
+
+	private String CruiseName = "Mystery Cruise";
+	private double adultsCruisePrice = 45.99;
+	private double childrenCruisePrice = 12.99;
+	private int numOfDays = 2;
 	private double casinoPrice = 20;
 
 	void getCruiseDetails() {

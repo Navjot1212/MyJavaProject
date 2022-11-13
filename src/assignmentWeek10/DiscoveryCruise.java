@@ -1,11 +1,12 @@
 package assignmentWeek10;
 
 public class DiscoveryCruise extends Cruise {
-	private String CruiseName = "Scenic Cruise";
-	private double adultsCruisePrice = 45.99;
-	private double childrenCruisePrice = 12.99;
-	private int numOfDays = 2;
-	private double adventureGamesPrice = 45;
+
+	private String CruiseName = "Discovery Cruise";
+	private double adultsCruisePrice = 39.99;
+	private double childrenCruisePrice = 9.99;
+	private int numOfDays = 4;
+	private double adventureGamesPrice = 50;
 
 	void getCruiseDetails() {
 		System.out.println(
