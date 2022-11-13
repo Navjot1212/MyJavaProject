@@ -1,38 +1,10 @@
 package assignmentWeek10;
 
 public class DiscoveryCruise extends Cruise {
-
-	private String CruiseName = "Discovery Cruise";
-	private double adultsCruisePrice = 39.99;
-	private double childrenCruisePrice = 9.99;
-	private int numOfDays = 4;
-	private double adventureGamesPrice = 50;
-
-	void getCruiseDetails() {
+	DiscoveryCruise() {
+		super(39.99, 9.99, 4, 50, "Adventure Games", "Discovery Cruise");
+		System.out.println("The cruise that you have selected is Discovery Cruise which is a 4 day cruise ");
 		System.out.println(
-				"The cruise that you have selected is " + CruiseName + " which is a " + numOfDays + " day cruise ");
-		System.out.println("Price for Adults above 12 years old age : $" + adultsCruisePrice
-				+ " per day\nPrice for kids above 5 years old age: $" + childrenCruisePrice
-				+ " per day \nChildren of age 5 and below can cruise free!!\n");
-	}
-
-	double getAdultPrice() {
-		return adultsCruisePrice;
-	}
-
-	double getChildrenPrice() {
-		return childrenCruisePrice;
-	}
-
-	int getNumOfDays() {
-		return numOfDays;
-	}
-
-	String getSpecialFeature() {
-		return "Adventure Games";
-	}
-
-	double getAddOnPrice() {
-		return adventureGamesPrice;
+				"Price for Adults above 12 years old age : $39.99 per day\nPrice for kids above 5 years old age: $9.99 per day \nChildren of age 5 and below can cruise free!!\n");
 	}
 }

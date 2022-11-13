@@ -12,50 +12,14 @@ public class Cruise extends User {
 	private int numOfChildren;
 	protected double addOnPrice;
 
-	private void selectCruise() {
-
-			do {
-
-				System.out.println(
-						"We offer 4 different packages as displayed below. Please enter the cruise that you want to select \nScenic Cruise\nSunset Cruise\nDiscovery Cruise\nMystery Cruise ");
-				cruiseName = sc.nextLine();
-				if (cruiseName.equalsIgnoreCase("Scenic Cruise")) {
-					ScenicCruise scenicCruise = new ScenicCruise();
-					scenicCruise.getCruiseDetails();
-					adultCruisePrice = scenicCruise.getAdultPrice();
-					childrenCruisePrice = scenicCruise.getChildrenPrice();
-					numOfDays = scenicCruise.getNumOfDays();
-					addOnPrice = scenicCruise.getAddOnPrice();
-					specialFeature = scenicCruise.getSpecialFeature();
-				} else if (cruiseName.equalsIgnoreCase("Sunset Cruise")) {
-					SunsetCruise sunsetCruise = new SunsetCruise();
-					sunsetCruise.getCruiseDetails();
-					adultCruisePrice = sunsetCruise.getAdultPrice();
-					childrenCruisePrice = sunsetCruise.getChildrenPrice();
-					numOfDays = sunsetCruise.getNumOfDays();
-					addOnPrice = sunsetCruise.getAddOnPrice();
-					specialFeature = sunsetCruise.getSpecialFeature();
-				} else if (cruiseName.equalsIgnoreCase("Mystery Cruise")) {
-					MysteryCruise mysteryCruise = new MysteryCruise();
-					mysteryCruise.getCruiseDetails();
-					adultCruisePrice = mysteryCruise.getAdultPrice();
-					childrenCruisePrice = mysteryCruise.getChildrenPrice();
-					numOfDays = mysteryCruise.getNumOfDays();
-					addOnPrice = mysteryCruise.getAddOnPrice();
-					specialFeature = mysteryCruise.getSpecialFeature();
-				} else if (cruiseName.equalsIgnoreCase("Dicovery Cruise")) {
-					DiscoveryCruise discoveryCruise = new DiscoveryCruise();
-					discoveryCruise.getCruiseDetails();
-					adultCruisePrice = discoveryCruise.getAdultPrice();
-					childrenCruisePrice = discoveryCruise.getChildrenPrice();
-					numOfDays = discoveryCruise.getNumOfDays();
-					addOnPrice = discoveryCruise.getAddOnPrice();
-					specialFeature = discoveryCruise.getSpecialFeature();
-				} else {
-					System.out.println("Invalid Selection!");
-				}
-		} while (!(cruiseName.equalsIgnoreCase("Scenic Cruise") || cruiseName.equalsIgnoreCase("Sunset Cruise")
-				|| cruiseName.equalsIgnoreCase("Discovery Cruise") || cruiseName.equalsIgnoreCase("Mystery Cruise")));
+	Cruise(double adultCruisePrice, double childrenCruisePrice, int numOfDays, double addOnPrice, String specialFeature,
+			String cruiseName) {
+		this.adultCruisePrice = adultCruisePrice;
+		this.childrenCruisePrice = childrenCruisePrice;
+		this.numOfDays = numOfDays;
+		this.addOnPrice = addOnPrice;
+		this.specialFeature = specialFeature;
+		this.cruiseName = cruiseName;
 	}
 
 	private void boarding() {
@@ -86,8 +50,6 @@ public class Cruise extends User {
 	}
 
 	void getCruiseBill() {
-
-		selectCruise();
 		boarding();
 		wantBuffet();
 		wantaddOns();

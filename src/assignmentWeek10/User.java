@@ -13,10 +13,10 @@ public class User {
 	private void maxAttempts() {
 		if (count <= 3) {
 			count++;
-		if (count > 3) {
-			System.out.println("Max attempts reached!");
-			System.exit(0);
-		}
+			if (count > 3) {
+				System.out.println("Max attempts reached!");
+				System.exit(0);
+			}
 		}
 	}
 
@@ -80,8 +80,8 @@ public class User {
 				System.out.println("User name or password incorrect");
 				maxAttempts();
 			}
-			
-		} while (!(username.equals(email) && pass.equals(password)));	
+
+		} while (!(username.equals(email) && pass.equals(password)));
 		count = 1;
 	}
 
