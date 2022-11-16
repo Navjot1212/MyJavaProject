@@ -1,29 +1,37 @@
 package AssignmentWeek11;
 
 public class Rocket implements Spaceship {
+	int currentCap;
+	int maxCap;
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-
+	Rocket(int maxCap) {
+		this.maxCap = maxCap;
 	}
 
 	@Override
-	public void land() {
-		// TODO Auto-generated method stub
-
+	public boolean launch() {
+		return true;
 	}
 
 	@Override
-	public void canCarry(Item item) {
-		// TODO Auto-generated method stub
-
+	public boolean land() {
+		return true;
 	}
 
 	@Override
-	public void carry(Item item) {
-		// TODO Auto-generated method stub
-
+	public boolean canCarry(Item item) {
+		if ((item.getWeight()<=(maxCap-currentCap)) && (currentCap <= maxCap)) {
+			return true;
+		}
+		return false;
 	}
 
+	@Override
+	public boolean carry(Item item) {
+		if (canCarry(item)) {
+			currentCap += item.getWeight();
+			return true;
+		}
+		return false;
+	}
 }

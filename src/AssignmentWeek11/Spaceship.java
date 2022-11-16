@@ -1,9 +1,11 @@
 package AssignmentWeek11;
 
+import java.io.FileNotFoundException;
+
 public interface Spaceship {
 
-	void launch();
-	void land();
-	void canCarry(Item item);
-	void carry(Item item);
+	boolean launch();
+	boolean land();
+	boolean canCarry(Item item)throws FileNotFoundException;
+	boolean carry(Item item)throws FileNotFoundException;
 }
