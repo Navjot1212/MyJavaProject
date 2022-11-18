@@ -3,9 +3,13 @@ package AssignmentWeek11;
 public class Rocket implements Spaceship {
 	int currentCap;
 	int maxCap;
+	int rocketCost;
+	String rName;
 
-	Rocket(int maxCap) {
+	Rocket(int maxCap, int rocketCost, String rName) {
 		this.maxCap = maxCap;
+		this.rocketCost = rocketCost;
+		this.rName = rName;
 	}
 
 	@Override
@@ -20,7 +24,7 @@ public class Rocket implements Spaceship {
 
 	@Override
 	public boolean canCarry(Item item) {
-		if ((item.getWeight()<=(maxCap-currentCap)) && (currentCap <= maxCap)) {
+		if ((item.getWeight() <= (maxCap - currentCap))) {
 			return true;
 		}
 		return false;

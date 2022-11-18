@@ -4,9 +4,8 @@ import java.io.*;
 import java.util.*;
 
 public class Simulation {
-	int numOfRockets;
 
-	ArrayList loadItems() throws FileNotFoundException {
+	ArrayList<Item> loadItems() throws FileNotFoundException {
 		File myFile = new File("C:\\Users\\navjo\\OneDrive\\Desktop\\phase-1.txt\\");
 		Scanner read = new Scanner(myFile);
 		ArrayList<Item> itemList = new ArrayList<Item>();
@@ -23,41 +22,74 @@ public class Simulation {
 		return itemList;
 	}
 
-	ArrayList loadU1(ArrayList itemList) {
+	ArrayList<Rocket> loadU1(ArrayList<Item> itemList) {
 		ArrayList<Rocket> R1List = new ArrayList<Rocket>();
-		Rocket rocket = new R1();
 		Item item;
-		for (int i = 0; i < itemList.size(); i++) {
-			item = (Item) itemList.get(i);
-			if (rocket.canCarry(item)) {
-				rocket.carry(item);
-				System.out.println(i+" R1 "+item.getName()+" "+rocket.currentCap);
-//				itemList.remove(i);
-			} 
+		while (itemList.size() > 0) {
+			R1 r1 = new R1();
+			for (int i = 0; i < itemList.size(); i++) {
+				item = itemList.get(i);
+				if (r1.canCarry(item)) {
+					r1.carry(item);
+					itemList.remove(i);
+				}
+			}
+			R1List.add(r1);
 		}
 		return R1List;
 	}
 
-	ArrayList loadU2(ArrayList itemList) {
+	ArrayList<Rocket> loadU2(ArrayList<Item> itemList) {
 		ArrayList<Rocket> R2List = new ArrayList<Rocket>();
-		Rocket rocket = new R2();
 		Item item;
-		for (int i = 0; i < itemList.size(); i++) {
-			item = (Item) itemList.get(i);
-			if (rocket.canCarry(item)) {
-				rocket.carry(item);
-				System.out.println(i+" R2 "+item.getName()+" "+rocket.currentCap);
-//				itemList.remove(i);
-			} 
+		while (itemList.size() > 0) {
+			R2 r2 = new R2();
+			for (int i = 0; i < itemList.size(); i++) {
+				item = itemList.get(i);
+				if (r2.canCarry(item)) {
+					r2.carry(item);
+					itemList.remove(i);
+				}
+			}
+			R2List.add(r2);
 		}
 		return R2List;
 	}
 
-	void runSimulation(ArrayList rocketList) {
-		Rocket rocket;
+	int runSimulation(ArrayList<Rocket> rocketList) throws InterruptedException {
+		int numOfRockets = 0;
+		Rocket rocket = null;
 		for (int i = 0; i < rocketList.size(); i++) {
 			rocket = (Rocket) rocketList.get(i);
+			/***************Launch Design*******************/
+			Thread.sleep(150);
+			System.out.print("3...");
+			Thread.sleep(150);
+			System.out.print(" 2.. ");
+			Thread.sleep(150);
+			System.out.print(" 1.  ");
+			Thread.sleep(150);
+			System.out.println(" \uD83D\uDE80");
+			/*************************************************/
+			if (rocket.launch() && rocket.land()) {
+				System.out.println(rocket.rName + " fleet rocket number " + (i + 1) + " Landed succesfully");
+				numOfRockets++;
+			} else {
+				numOfRockets++;
+				System.out.println(rocket.rName + " fleet rocket number " + (i + 1) + " Exploded");
+				System.out.println("Relaunching " + rocket.rName + " fleet rocket number " + (i + 1));
+				if (rocket.launch() && rocket.land()) {
+					System.out.println(
+							"Relaunched " + rocket.rName + " fleet rocket number " + (i + 1) + " Landed succesfully");
+					numOfRockets++;
+				} else {
+					System.out.println(
+							"Relaunched " + rocket.rName + " fleet rocket number " + (i + 1) + " Exploded again");
+					numOfRockets++;
+				}
+			}
 		}
+		return (numOfRockets * rocket.rocketCost);
 	}
 
 }
